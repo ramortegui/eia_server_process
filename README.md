@@ -1,24 +1,22 @@
 # ServerProcess
 
-**TODO: Add description**
+Generic server process
+
+The purpose of this server is to abstract the server common functions.
+
+The KeyValueStore will emulate a Map structure to easily follow the
+way that the server process works.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+- Clone the repo
+- cd repo
+- mix deps.get
+- iex -S mix
 
-  1. Add `server_process` to your list of dependencies in `mix.exs`:
 
-    ```elixir
-    def deps do
-      [{:server_process, "~> 0.1.0"}]
-    end
-    ```
+## Use
 
-  2. Ensure `server_process` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:server_process]]
-    end
-    ```
-
+    pid = ServerProcess.start(KeyValueStore)
+    ServerProcess.call(pid, {:put, :my_key, "Value of my key"})
+    ServerProcess.call(pid, {:get, :my_key})
